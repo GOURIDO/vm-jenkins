@@ -1,20 +1,46 @@
 pipeline {
     agent any
+
     stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out source code...'
+                // Example: git 'https://github.com/your-repo/project.git'
+            }
+        }
+
         stage('Build') {
             steps {
-                echo 'Building...'
+                echo 'Building the project...'
+                // Example: sh 'make' or bat 'build.bat'
             }
         }
+
         stage('Test') {
             steps {
-                echo 'Testing...'
+                echo 'Running tests...'
+                // Example: sh 'make test' or bat 'run-tests.bat'
             }
         }
+
+        stage('Code Analysis') {
+            steps {
+                echo 'Analyzing code quality...'
+                // Example: run static analysis tools like SonarQube here
+            }
+        }
+
         stage('Deploy') {
             steps {
-                echo 'Deploying...'
+                echo 'Deploying application...'
+                // Example: scripts to deploy to server or cloud
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline completed.'
         }
     }
 }
